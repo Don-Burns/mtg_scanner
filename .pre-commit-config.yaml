@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.6.0
     hooks:
       - id: check-yaml
       - id: check-json
@@ -14,14 +14,15 @@ repos:
       - id: requirements-txt-fixer
       - id: name-tests-test
         args: [--pytest-test-first]
-      - id: no-commit-to-branch
-        args: [-b, main, -b, development]
+      # Causes issues in GitHub Actions runner on main branch, need to figure out a workaround for only when running in that scenario if I want to use it
+      # - id: no-commit-to-branch
+      #   args: [-b, main]
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.3.1
+    rev: v1.5.5
     hooks:
       - id: remove-crlf
   - repo: https://github.com/psf/black
-    rev: 24.3.0
+    rev: 24.8.0
     hooks:
       - id: black
   # sort imports
