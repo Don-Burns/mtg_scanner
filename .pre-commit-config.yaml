@@ -1,0 +1,39 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: detect-private-key
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: requirements-txt-fixer
+      - id: name-tests-test
+        args: [--pytest-test-first]
+      - id: no-commit-to-branch
+        args: [-b, main, -b, development]
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.3.1
+    hooks:
+      - id: remove-crlf
+  - repo: https://github.com/psf/black
+    rev: 24.3.0
+    hooks:
+      - id: black
+  # sort imports
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: isort (python)
+        args: ["--profile", "black"] # prevent it fighting black
+  - repo: https://github.com/lk16/detect-missing-init
+    rev: v0.1.6
+    hooks:
+      - id: detect-missing-init
+        args:
+          ["--create", "--track", "--python-folders", "src/mtg_scanner,tests"]

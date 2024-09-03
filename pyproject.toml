@@ -1,0 +1,81 @@
+[tool.poetry]
+name = "mtg-scanner"
+version = "0.1.0"
+description = ""
+authors = ["Donal Burns <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.2"
+pytest-cov = "^5.0.0"
+black = "^24.8.0"
+isort = "^5.13.2"
+pre-commit = "^3.8.0"
+tox = "^4.18.0"
+mypy = "^1.11.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88 # default
+
+[tool.isort]
+profile = "black"
+include_trailing_comma = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = ["tests"]
+addopts = ["--strict-markers"] # fail on unknown markers
+markers = [
+    "slow: marks slow tests. Run using --runslow",
+    "integration: marks tests involving external services. Run using --runint",
+]
+
+# pytest cov config
+## omit test dir and spark source code (which lives in /opt locally at least)
+[tool.coverage.run]
+command_line = "-m pytest --runslow tests"
+omit = ["tests/*", "/opt/*"]
+relative_files = true
+branch = true
+
+[tool.coverage.paths]
+# below dirs will be treated as equivalent
+# allows package to be installed in a few ways and report coverage correctly
+source = ["src/", ".tox/**/site-packages/", ".venv/**/site-packages/"]
+
+[tool.coverage.report]
+skip_empty = true
+
+[tool.mypy]
+exclude = ["build/*", "airflow/*"]
+# don't allow implicit package paths.
+# useful so we don't accidentally import in the wrong way e.g. test files
+namespace_packages = false
+# below is explicitly marking the mypy --strict flag checks
+warn_unused_configs = true
+disallow_any_generics = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+no_implicit_reexport = true
+strict_equality = true
+extra_checks = true
+
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+# so we don't need to type all our test with `-> None`
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
