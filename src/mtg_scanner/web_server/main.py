@@ -22,4 +22,4 @@ templates = Jinja2Templates(directory=STATIC_DIR / "templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def card_list(request: Request) -> HTMLResponse:
-    return templates.TemplateResponse(request=request, name="card_list.html")
+    return templates.TemplateResponse(request=request, name="card_list.tmpl.html")
