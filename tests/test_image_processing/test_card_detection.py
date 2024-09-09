@@ -6,7 +6,7 @@ import cv2 as cv
 import cv2.typing as ct
 import pytest
 
-from mtg_scanner.image_processing.card_detection import detect_card_edge
+from mtg_scanner.scanner.image_processing.card_detection import detect_card_edge
 
 DATA_DIR = Path(__file__).parent.parent / "data" / "input"
 EXPECTED_DIR = Path(__file__).parent.parent / "data" / "expected"

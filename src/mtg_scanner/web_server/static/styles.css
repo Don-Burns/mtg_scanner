@@ -1,0 +1,171 @@
+/******************************/
+/* Global */
+/******************************/
+:root {
+    /* Variables */
+    --colour-base: #333;
+    --colour-light: #444;
+    --colour-text: white;
+    /* styling */
+    background-color: var(--colour-base);
+    color: var(--colour-text);
+    scrollbar-color: var(--colour-light) var(--colour-base);
+}
+
+/******************************/
+/* Top Nav Bar */
+/******************************/
+header nav {
+    background-color: var(--colour-light);
+    text-align: left;
+    padding: 0.4em 0.4em 0.25em;
+}
+
+header nav a {
+    color: var(--colour-text);
+    text-decoration: none;
+}
+
+header ul {
+    padding: 0em;
+    margin: 0;
+}
+
+header ul li {
+    display: inline-block;
+    padding-left: 1em;
+}
+
+header ul li:first-child {
+    padding-left: 0;
+}
+
+/******************************/
+/* Tables */
+/******************************/
+body table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 80%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 100%;
+    min-width: 45em;
+    color: var(--colour-text);
+
+    /* Drop Shadow */
+    --table-rounding: 0.6em;
+    box-shadow: 0 0 var(--table-rounding) rgba(0, 0, 0, 0.7);
+    border-top-left-radius: var(--table-rounding);
+    border-top-right-radius: var(--table-rounding);
+    border-bottom-left-radius: var(--table-rounding);
+    border-bottom-right-radius: var(--table-rounding);
+}
+
+
+/* Alternating table colours */
+body tbody tr:nth-child(odd) {
+    background-color: var(--colour-base);
+}
+
+body tbody tr:nth-child(even) {
+    background-color: var(--colour-light);
+}
+
+body thead {
+    background-color: var(--colour-light);
+}
+
+/* rounded corners */
+/* This affects colours only, not borders for some reason */
+th:first-child {
+    border-top-left-radius: var(--table-rounding);
+}
+
+th:last-child {
+    border-top-right-radius: var(--table-rounding);
+}
+
+tr:last-child td:first-child {
+    border-bottom-left-radius: var(--table-rounding);
+}
+
+tr:last-child td:last-child {
+    border-bottom-right-radius: var(--table-rounding);
+}
+
+body table thead th {
+    padding: 0.5em;
+}
+
+body table tbody td {
+    padding: 0.2em;
+}
+
+/* Card Image */
+body thead th.tbl-card-image,
+body td.tbl-card-image {
+    text-align: center;
+    width: 6em;
+}
+
+/* Card Name */
+body thead th.tbl-card-name,
+body td.tbl-card-name {
+    text-align: left;
+    padding-left: 1%;
+    width: 12em;
+}
+
+/* Align the colours left but more centred */
+/* Colour symbol */
+body thead th.tbl-card-colour-symbol,
+body td.tbl-card-colour-symbol {
+    text-align: right;
+    padding-right: 0.05em;
+    /* Keep all colours on 1 line */
+    width: 7em;
+}
+
+/* Colour text */
+body thead th.tbl-card-colour-text,
+body td.tbl-card-colour-text {
+    text-align: left;
+    padding-left: 0;
+    width: 4em;
+}
+
+
+
+/* Change colour of row depending on td class */
+body td.red {
+    background-color: red;
+}
+
+body td.green {
+    background-color: green;
+}
+
+body td.blue {
+    color: blue;
+}
+
+/* Change styling depending on tag of table cell (<td card-rarity="common">...) */
+body td[card-rarity="common"] {
+    color: var(--colour-text);
+
+}
+
+body td[card-rarity="uncommon"] {
+    color: rgb(191, 188, 188);
+}
+
+body td[card-rarity="rare"] {
+    color: #d6b602
+}
+
+body td[card-rarity="mythic"] {
+    color: orange;
+}
