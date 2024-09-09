@@ -5,10 +5,10 @@ from sqlalchemy import engine_from_config, pool
 
 from alembic import context
 from mtg_scanner.db.models import Base
-from mtg_scanner.env import export_dot_env
+from mtg_scanner.env import export_dot_env, get_db_url
 
 export_dot_env()
-DB_URL = os.environ["DB_URL"]
+DB_URL = get_db_url()
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

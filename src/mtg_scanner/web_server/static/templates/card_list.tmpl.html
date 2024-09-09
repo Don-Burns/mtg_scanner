@@ -3,8 +3,10 @@
 {% block title %}Card List{% endblock %}
 
 {% block body %}
-<h1>Home</h1>
-<p>Welcome to the home page.</p>
+<h1>Card List</h1>
+<form action="{{ url_for('sync_db_scryfall')}}" method="post">
+    <button>sync db with scryfall</button>
+</form>
 <table>
     <thead>
         <tr>
