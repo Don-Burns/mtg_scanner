@@ -214,14 +214,21 @@ async def download_and_save(
             await f.write(await img_bytes)
 
 
-async def main() -> int:
+async def pull_scryfall_data(
+    image_data_dir: Path = Path(__file__).parent / "image_data",
+    bulk_data_dir: Path = Path(__file__).parent / "bulk_data",
+    overwrite_existing_images: bool = False,
+    image_pull_limit: int | None = None,
+) -> None:
     """
-    Main function
+    Pulls data from scryfall and saves it to the given directories
+
+    Args:
+        image_data_dir (Path, optional): path to save scryfall card images to. Defaults to Path(__file__).parent/"image_data".
+        bulk_data_dir (Path, optional): path to save bulk card data to. Defaults to Path(__file__).parent/"bulk_data".
+        overwrite_existing_images (bool, optional): Whether to overwrite any existing images for cards already pulled. Defaults to False.
+        image_pull_limit (int | None, optional): Max number of images to pull, `None`=`No Limit`. Defaults to None.
     """
-
-    args = CliArgs.parse_args()
-    logger.info("Args: %s", args)
-
     tasks: list[Coroutine[object, object, object]] = []
     # NOTE: certain headers are required by scryfall: https://scryfall.com/docs/api
     async with aiohttp.ClientSession(
@@ -232,19 +239,35 @@ async def main() -> int:
     ) as session:
         client = ScryfallApiClient(session)
         bulk_data = await client.get_bulk_data(BulkDataType.UNIQUE_ARTWORK)
-        tasks.append(save_bulk_data(bulk_data, args.bulk_data_path))
+        tasks.append(save_bulk_data(bulk_data, bulk_data_dir))
 
         tasks.append(
             save_image_data(
                 bulk_data,
-                args.image_data_dir,
+                image_data_dir,
                 session,
-                args.overwrite_existing_images,
-                args.image_pull_limit,
+                overwrite_existing_images,
+                image_pull_limit,
             )
         )
 
         await asyncio.gather(*tasks)
+
+
+async def main() -> int:
+    """
+    Main function
+    """
+
+    args = CliArgs.parse_args()
+    logger.info("Args: %s", args)
+
+    await pull_scryfall_data(
+        image_data_dir=args.image_data_dir,
+        bulk_data_dir=args.bulk_data_path,
+        overwrite_existing_images=args.overwrite_existing_images,
+        image_pull_limit=args.image_pull_limit,
+    )
 
     logger.info("Finished")
 

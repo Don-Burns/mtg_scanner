@@ -20,8 +20,6 @@ app.mount(
 templates = Jinja2Templates(directory=STATIC_DIR / "templates")
 
 
-@app.get("/items/{id_}", response_class=HTMLResponse)
-async def read_item(request: Request, id_: str):
-    return templates.TemplateResponse(
-        request=request, name="item.html", context={"id": id_}
-    )
+@app.get("/", response_class=HTMLResponse)
+async def card_list(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse(request=request, name="card_list.html")

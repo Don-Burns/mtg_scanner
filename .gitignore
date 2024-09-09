@@ -166,5 +166,5 @@ cython_debug/
 # tests debug data
 tests/data/debug
 
-scryfall_data/bulk_data
-scryfall_data/image_data
+**/scryfall_data/bulk_data
+**/scryfall_data/image_data
