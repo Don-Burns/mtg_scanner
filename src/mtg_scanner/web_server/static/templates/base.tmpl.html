@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- auto refresh -->
+<!-- <meta http-equiv="refresh" content="1"> -->
+
+<head>
+    <title>{%block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='styles.css')}}">
+</head>
+<header>
+    <nav>
+        <ul>
+            <li>
+                <a href="{{ url_for('card_list') }}">
+                    <img alt="Logo" src="https://via.placeholder.com/150" height="25em">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="">Card Search</a>
+            </li>
+            <li>
+                <a href="">Card Lists</a>
+            </li>
+            <li>
+                <a href="">Card Scanner</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<body>
+    {% block body %}
+    {% endblock %}
+</body>
+
+</html>
