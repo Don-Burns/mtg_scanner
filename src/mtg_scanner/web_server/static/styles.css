@@ -104,6 +104,10 @@ body table tbody td {
     padding: 0.2em;
 }
 
+body table a:link {
+    color: var(--colour-text);
+}
+
 /* Card Image */
 body thead th.tbl-card-image,
 body td.tbl-card-image {
@@ -135,21 +139,6 @@ body td.tbl-card-colour-text {
     text-align: left;
     padding-left: 0;
     width: 4em;
-}
-
-
-
-/* Change colour of row depending on td class */
-body td.red {
-    background-color: red;
-}
-
-body td.green {
-    background-color: green;
-}
-
-body td.blue {
-    color: blue;
 }
 
 /* Change styling depending on tag of table cell (<td card-rarity="common">...) */
