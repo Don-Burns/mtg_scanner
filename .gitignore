@@ -168,3 +168,5 @@ tests/data/debug
 
 **/scryfall_data/bulk_data
 **/scryfall_data/image_data
+# whitelist env package dir
+!src/mtg_scanner/env
