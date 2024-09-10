@@ -29,6 +29,7 @@ def upgrade() -> None:
         sa.Column("rarity", sa.String(length=25), nullable=False),
         sa.Column("power", sa.Integer(), nullable=True),
         sa.Column("toughness", sa.Integer(), nullable=True),
+        sa.Column("type", sa.String(length=255), nullable=True),
         sa.Column("set_code", sa.String(length=3), nullable=True),
         sa.Column("scryfall_id", sa.String(), nullable=True, unique=True),
         sa.Column("scryfall_uri", sa.String(), nullable=True),
