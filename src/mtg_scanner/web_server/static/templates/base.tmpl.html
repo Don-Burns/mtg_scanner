@@ -6,21 +6,22 @@
 <head>
     <title>{%block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='styles.css')}}">
+    <!-- <link rel="icon" type="image/x-icon" href="{{ url_for('static', path='favicon.ico') }}">  #TODO: build the icon and add to project; https://www.w3schools.com/howto/howto_html_favicon.asp -->
 </head>
 <header>
     <nav>
         <ul>
             <li>
-                <a href="{{ url_for('card_list') }}">
+                <a href="{{ url_for('home') }}">
                     <img alt="Logo" src="https://via.placeholder.com/150" height="25em">
                     Home
                 </a>
             </li>
             <li>
-                <a href="">Card Search</a>
+                <a href="{{ url_for('card_list') }}">Card Search</a>
             </li>
             <li>
-                <a href="">Card Lists</a>
+                <a href="{{ url_for('card_list') }}">Card Lists</a>
             </li>
             <li>
                 <a href="">Card Scanner</a>

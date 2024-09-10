@@ -5,7 +5,7 @@ from sqlalchemy import UUID, DateTime, Enum, Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
-def build_default_dt_now():
+def build_default_dt_now() -> Mapped[datetime]:
     return mapped_column(
         DateTime, nullable=False, default=datetime.now().astimezone(timezone.utc)
     )

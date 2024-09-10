@@ -12,6 +12,10 @@ def populate_cards_from_scryfall_data(
     orm.begin()
     while len(cards) > 0:
         card = cards.pop()
+        card_art_uri: str = f"{card.id}.jpg"
+        # check image exists
+        image_path = image_dir / card_art_uri
+
         statement = insert(Card).values(
             name=card.name,
             mana_cost=card.mana_cost,
@@ -21,7 +25,9 @@ def populate_cards_from_scryfall_data(
             set_code=card.set,
             scryfall_id=card.id,
             scryfall_uri=card.uri,
-            card_art_uri=(image_dir / f"{card.id}.png").as_uri(),
+            card_art_uri=(
+                card_art_uri if image_path.exists() else None
+            ),  # This will need to align with the image mount for the web server
         )
         statement = statement.on_conflict_do_nothing(index_elements=[Card.scryfall_id])
         orm.execute(statement)
