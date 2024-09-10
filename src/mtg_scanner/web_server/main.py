@@ -170,7 +170,7 @@ class _CardListRow(BaseModel):
             ),
             mana_value=card.mana_cost if card.mana_cost is not None else "0",
             rarity=str(card.rarity),
-            type="tbd",
+            type=card.type if card.type is not None else "N/a",
             image_uri=(
                 card.card_art_uri.removeprefix("file:///home/donal/src/mtg_scanner")
                 if card.card_art_uri

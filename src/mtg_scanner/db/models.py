@@ -60,6 +60,7 @@ class Card(Base):
     rarity: Mapped[CardRarity] = mapped_column(String(25), nullable=False)
     power: Mapped[int | None]
     toughness: Mapped[int | None]
+    type: Mapped[str | None] = mapped_column(String(255), nullable=True)
     set_code: Mapped[str | None] = mapped_column(String(3), nullable=True)
     scryfall_id: Mapped[str | None] = mapped_column(String, nullable=True, unique=True)
     scryfall_uri: Mapped[str | None] = mapped_column(String, nullable=True, unique=True)

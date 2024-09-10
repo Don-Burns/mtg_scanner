@@ -22,6 +22,7 @@ def populate_cards_from_scryfall_data(
             rarity=card.rarity.value,
             power=card.power,
             toughness=card.toughness,
+            type=card.type_line,
             set_code=card.set,
             scryfall_id=card.id,
             scryfall_uri=card.uri,
